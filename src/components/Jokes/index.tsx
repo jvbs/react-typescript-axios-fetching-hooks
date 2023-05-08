@@ -1,4 +1,4 @@
-import axios from "../../services/api";
+import axios from "../../services/dadJokesApi";
 import { useAxios } from "../../hooks/useAxios";
 
 interface JokesProps {}
