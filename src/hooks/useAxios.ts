@@ -13,7 +13,10 @@ export const useAxios = <T = unknown>(configs: IHookConfigurations) => {
 
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [reload, setReload] = useState<number>(0);
+
+  const refetch = () => setReload((prev) => prev + 1);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -40,7 +43,9 @@ export const useAxios = <T = unknown>(configs: IHookConfigurations) => {
     fetchData();
 
     return () => controller.abort();
-  }, []);
 
-  return { data, error, loading };
+    // eslint-disable-next-line
+  }, [reload]);
+
+  return { data, error, loading, refetch };
 };

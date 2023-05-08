@@ -10,7 +10,7 @@ interface IJoke {
 }
 
 export const Jokes: React.FC<JokesProps> = () => {
-  const { data, error, loading } = useAxios<IJoke>({
+  const { data, error, loading, refetch } = useAxios<IJoke>({
     axiosInstance: axios,
     method: "get",
     url: "/",
@@ -31,6 +31,8 @@ export const Jokes: React.FC<JokesProps> = () => {
       {!loading && !error && data && <p>{data?.joke.toString()}</p>}
 
       {!loading && !error && !data && <p>No jokes to display.</p>}
+
+      <button onClick={() => refetch()}>Get new joke</button>
     </article>
   );
 };
