@@ -1,5 +1,12 @@
+import { Jokes } from "./components/Jokes";
+
 function App() {
-  return <h1>Hello world</h1>;
+  return (
+    <>
+      <h1>Dad Jokes</h1>
+      <Jokes />
+    </>
+  );
 }
 
 export default App;
